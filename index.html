@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oneiros - Dream Interpretation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap');
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-xl space-y-8 text-center">
+        <div class="relative">
+            <svg class="mx-auto" width="120" height="120" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="softGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#333;stop-opacity:0.7" />
+                        <stop offset="100%" style="stop-color:#000;stop-opacity:0.9" />
+                    </linearGradient>
+                </defs>
+                <path 
+                    d="M50 10 L80 50 Q50 70, 20 50 Z" 
+                    fill="url(#softGradient)" 
+                    stroke="none"
+                />
+            </svg>
+        </div>
+
+        <div class="space-y-2">
+            <h1 class="text-5xl font-extralight tracking-tight text-gray-900">Oneiros</h1>
+            <p class="text-sm text-gray-500 tracking-wider uppercase">Mythic Dream Interpretation</p>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-2xl p-8 border border-gray-100">
+            <p class="mb-4 text-gray-700">Whisper your dream to the ancient spirits...</p>
+            <textarea 
+                id="dreamInput"
+                placeholder="Describe your dream here..." 
+                class="w-full h-48 bg-gray-50 border-none text-gray-900 text-sm rounded-xl focus:ring-2 focus:ring-gray-200 resize-none p-4 transition-all duration-300 ease-in-out"
+            ></textarea>
+            <button 
+                id="interpretButton"
+                class="mt-6 w-full py-4 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors duration-300 text-sm tracking-wider uppercase"
+            >
+                Unveil the Mythic Meaning
+            </button>
+            
+            <div 
+                id="interpretationResult" 
+                class="mt-4 text-left text-gray-700 hidden bg-gray-50 p-4 rounded-xl"
+            ></div>
+        </div>
+        
+        <p class="mt-4 text-xs text-gray-500">
+            Inspired by the Greek dream spirits, the Oneiroi
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('interpretButton').addEventListener('click', function() {
+            const dreamText = document.getElementById('dreamInput').value;
+            const resultDiv = document.getElementById('interpretationResult');
+            
+            if (!dreamText.trim()) {
+                alert('Please describe your dream first!');
+                return;
+            }
+
+            // Clear previous result
+            resultDiv.innerHTML = '';
+            resultDiv.classList.remove('hidden');
+
+            // Simulated mythological interpretation
+            const mythologicalInterpretation = generateDreamInterpretation(dreamText);
+            
+            // Typing effect to simulate mystical revelation
+            typeWriter(resultDiv, mythologicalInterpretation);
+        });
+
+        function generateDreamInterpretation(dream) {
+            // A function to generate a mythologically-inspired dream interpretation
+            const mythologicalReferences = [
+                'Hermes', 'Zeus', 'Morpheus', 'Apollo', 'Athena', 
+                'Poseidon', 'Hecate', 'Dionysus', 'Artemis'
+            ];
+
+            const symbolisms = [
+                'transformation', 'journey', 'hidden knowledge', 
+                'inner conflict', 'divine message', 'prophecy'
+            ];
+
+            const randomDeity = mythologicalReferences[Math.floor(Math.random() * mythologicalReferences.length)];
+            const randomSymbolism = symbolisms[Math.floor(Math.random() * symbolisms.length)];
+
+            return `The spirits of the Oneiroi have revealed a profound message. ${randomDeity} whispers of a dream rich with the essence of ${randomSymbolism}. The symbols in your dream are not mere fragments, but a tapestry woven by the ancient gods themselves. 
+
+Your dream speaks of profound transitions and hidden truths waiting to be unveiled. The mythic landscape of your subconscious bears the marks of divine inspiration, inviting you to look deeper into the realms between reality and imagination.`;
+        }
+
+        function typeWriter(element, text, speed = 30) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+    </script>
+</body>
+</html>
